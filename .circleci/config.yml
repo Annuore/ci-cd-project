@@ -208,7 +208,20 @@ jobs:
 
   configure-infrastructure:
     docker:
-      - image: cimg/node:13.8.0
+      - image: cimg/base:2022.07
+        environment:
+          NODE_ENV: "local"
+          VERSION: "1"
+          ENVIRONMENT: "production"
+          TYPEORM_CONNECTION: $TYPEORM_CONNECTION
+          TYPEORM_DATABASE: $TYPEORM_DATABASE
+          TYPEORM_ENTITIES: $TYPEORM_ENTITIES
+          TYPEORM_HOST: $TYPEORM_HOST
+          TYPEORM_MIGRATIONS: $TYPEORM_MIGRATIONS
+          TYPEORM_MIGRATIONS_DIR: $TYPEORM_MIGRATIONS_DIR
+          TYPEORM_PASSWORD: $TYPEORM_PASSWORD
+          TYPEORM_PORT: $TYPEORM_PORT
+          TYPEORM_USERNAME: $TYPEORM_USERNAME
     steps:
       - checkout
       - add_ssh_keys:
@@ -257,7 +270,7 @@ jobs:
           name: Install nodejs
           command: |
             sudo apt -y update && sudo apt install -y python3
-            curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+            curl -fSsL https://deb.nodesource.com/setup_14.x | sudo -E bash -
             sudo apt install -y nodejs
             sudo apt install -y build-essential 
       - run:
@@ -297,7 +310,7 @@ jobs:
           name: Install nodejs
           command: |
             sudo apt -y update && sudo apt install -y python3
-            curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+            curl -fSsL https://deb.nodesource.com/setup_14.x | sudo -E bash -
             sudo apt install -y nodejs
             sudo apt install -y build-essential 
       - run:
@@ -336,7 +349,7 @@ jobs:
           command: |
             sudo apt -y update && sudo apt install -y python3
             sudo apt install -y gzip
-            curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+            curl -fSsL https://deb.nodesource.com/setup_14.x | sudo -E bash -
             sudo apt install -y nodejs
       - run:
           name: Backend smoke test.
@@ -377,7 +390,7 @@ jobs:
           name: Install dependencies
           command: |
             sudo apt -y update && sudo apt install -y python3
-            curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+            curl -fSsL https://deb.nodesource.com/setup_14.x | sudo -E bash -
             sudo apt install -y nodejs
       - run:
           name: Update cloudfront distribution
