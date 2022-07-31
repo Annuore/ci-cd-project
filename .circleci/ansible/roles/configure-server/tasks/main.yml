@@ -3,22 +3,25 @@
   apt:
    update_cache: yes
 
+# - name: nvm
+#   shell: >
+#     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+#   args:
+#     creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+
 - name: "Add Node.js from Nodesource"
   become: true
-  shell: |
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-    export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-    nvm install 13.8.0
-    # sudo curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-    # sudo apt -y install nodejs
+  shell: | 
+    curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+    apt -y install nodejs
+    apt install -y build-essential 
     
-# - name: "Install Node.js 13"
-#   become: true
-#   apt:
-#     name: ["nodejs"]
-#     state: latest
-#     update_cache: yes
+- name: "Install Node.js 13"
+  become: true
+  apt:
+    name: ["nodejs"]
+    state: latest
+    update_cache: yes
 
 - name: "Install PM2 Globally"
   npm:
