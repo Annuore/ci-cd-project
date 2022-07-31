@@ -3,18 +3,9 @@
   apt:
    update_cache: yes
 
-# - name: nvm
-#   shell: >
-#     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-#   args:
-#     creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
-
 - name: "Add Node.js from Nodesource"
   become: true
   shell: | 
-    KEYRING=/usr/share/keyrings/nodesource.gpg
-    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | gpg --dearmor | sudo tee "$KEYRING" >/dev/null 
-    gpg --no-default-keyring --keyring "$KEYRING" --list-keys
     curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash -
     apt -y install nodejs
     apt install -y build-essential 
