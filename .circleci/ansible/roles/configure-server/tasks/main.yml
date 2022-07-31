@@ -1,0 +1,27 @@
+---
+- name: "Update apt-get using an equivalent command"
+  apt:
+   update_cache: yes
+
+- name: "Add Node.js from Nodesource"
+  become: true
+  shell: |
+    curl -fssL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+    
+- name: "Install Node.js 13"
+  become: true
+  apt:
+    name: ["nodejs"]
+    state: latest
+    update_cache: yes
+
+- name: "Install PM2 Globally"
+  npm:
+    name: pm2
+    global: yes
+
+- name: "copy .env file to /etc/profile.d"
+  become: true 
+  copy:
+    src: env.sh
+    dest: /etc/profile.d/
