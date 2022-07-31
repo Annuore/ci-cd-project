@@ -6,15 +6,17 @@
 - name: "Add Node.js from Nodesource"
   become: true
   shell: |
-    sudo curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-    sudo apt -y install nodejs
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+    nvm install 13.8.0
+    # sudo curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+    # sudo apt -y install nodejs
     
-# - name: "Install Node.js 13"
-#   become: true
-#   apt:
-#     name: ["nodejs"]
-#     state: latest
-#     update_cache: yes
+- name: "Install Node.js 13"
+  become: true
+  apt:
+    name: ["nodejs"]
+    state: latest
+    update_cache: yes
 
 - name: "Install PM2 Globally"
   npm:
