@@ -257,7 +257,7 @@ jobs:
           name: Install nodejs
           command: |
             sudo apt -y update && sudo apt install -y python3
-            curl -fssL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+            curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
             sudo apt install -y nodejs
             sudo apt install -y build-essential 
       - run:
@@ -297,7 +297,7 @@ jobs:
           name: Install nodejs
           command: |
             sudo apt -y update && sudo apt install -y python3
-            curl -fssL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+            curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
             sudo apt install -y nodejs
             sudo apt install -y build-essential 
       - run:
@@ -336,7 +336,7 @@ jobs:
           command: |
             sudo apt -y update && sudo apt install -y python3
             sudo apt install -y gzip
-            curl -fssL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+            curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
             sudo apt install -y nodejs
       - run:
           name: Backend smoke test.
@@ -377,7 +377,7 @@ jobs:
           name: Install dependencies
           command: |
             sudo apt -y update && sudo apt install -y python3
-            curl -fssL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+            curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
             sudo apt install -y nodejs
       - run:
           name: Update cloudfront distribution
